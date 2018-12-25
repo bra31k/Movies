@@ -4,10 +4,10 @@ from django.urls import path
 from django.conf.urls import include
 from .MoviesDB import views
 
-router = routers.DefaultRouter()
-router.register(r'films', views.FilmViewSet)
+#router = routers.DefaultRouter()
+#router.register(r'films', views.FilmViewSetAll)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include(router.urls)),
+    path('api/', include('Movies.MoviesDB.urls')),
 ]
