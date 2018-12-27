@@ -4,9 +4,11 @@ from django.conf.urls import include
 from . import views
 
 router = routers.DefaultRouter()
-router.register(r'films', views.FilmViewSetAll)
+# router.register(r'films', views.FilmViewSetAll)
 
 urlpatterns = [
-    path('', include(router.urls)),
+    path("films/", views.FilmViewSet.as_view(), name="films_list"),
+    path("genres/", views.GenreViewSet.as_view(), name="genres_list"),
+
 ]
 
