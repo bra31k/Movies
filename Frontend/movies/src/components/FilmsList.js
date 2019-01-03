@@ -23,7 +23,7 @@ export class FilmsList extends React.Component {
     }
 
     getImg(poster_path) {
-        var img = 'http://image.tmdb.org/t/p/w185/' + poster_path;
+        var img = 'http://image.tmdb.org/t/p/w300/' + poster_path;
         return img
     }
 
@@ -31,9 +31,9 @@ export class FilmsList extends React.Component {
     renderFilms() {
         return this.state.films.map(film => {
             return (
-                <Col xs="auto">
-                    <Card>
-                        <CardImg src={this.getImg(film.poster_path)} />
+                <Col xs="auto" sm={{ size: '4'}}>
+                    <Card body className="text-center">
+                        <CardImg width="100" src={this.getImg(film.poster_path)} />
                         <CardBody>
                             <CardTitle>{film.original_title}</CardTitle>
                         </CardBody>
