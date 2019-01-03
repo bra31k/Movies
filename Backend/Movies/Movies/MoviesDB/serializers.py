@@ -13,7 +13,7 @@ class FilmSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Film
-        fields = ('original_title', 'release_date', 'poster_path')
+        fields = ('original_title', 'release_date', 'poster_path', 'id')
 
 
 
