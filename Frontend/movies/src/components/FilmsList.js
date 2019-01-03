@@ -9,7 +9,8 @@ export class FilmsList extends React.Component {
         super(props);
         this.state = {
             films: [],
-            next_page: ''
+            next_page: '',
+            pages: 0,
         };
     }
 
@@ -18,7 +19,8 @@ export class FilmsList extends React.Component {
         axios.get(`http://127.0.0.1:8000/api/films/`).then(res => {
         const films = res.data['results'];
         const next_page = res.data['next'];
-        this.setState({ films, next_page });
+        const pages = parseInt(res.data['count']/films.length);
+        this.setState({ films, next_page, pages });
         })
     }
 
