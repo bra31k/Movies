@@ -1,7 +1,6 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import './App.css';
-import FilmsList from './components/FilmsList.js'
+import FilmsList from './containers/FilmsList.js'
 
 
 export class App extends React.Component {
@@ -10,7 +9,7 @@ export class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('root'))
-
 export default App;
+
+
 
