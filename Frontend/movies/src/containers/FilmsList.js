@@ -10,9 +10,9 @@ export class FilmsList extends React.Component {
 
     componentDidMount() {
         const { getFilms, getCurrentPage } = this.props;
-        if (this.props.match.params.filter){
-            getFilms(this.props.match.params.filter);
-            getCurrentPage(this.props.match.params.filter);
+        if (this.props.page){
+            getFilms(this.props.page);
+            getCurrentPage(this.props.page);
         }
         else {
             getFilms(1);
@@ -30,7 +30,6 @@ export class FilmsList extends React.Component {
     }
 
     render() {
-        console.log(this.props);
         return (
             <Container>
                 <Row>

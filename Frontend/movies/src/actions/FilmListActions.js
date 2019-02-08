@@ -22,7 +22,7 @@ export const getFilms = (page) => {
     }
 };
 
-export const getCurrentPage = (page, count) => {
+export const getCurrentPage = (page) => {
     return function (dispatch) {
         dispatch({
             type: GET_PAGE_SUCCESS,
