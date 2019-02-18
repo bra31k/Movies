@@ -1,14 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import { Provider } from 'react-redux'
-import { BrowserRouter, Router, Route } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 import {store} from './store/configureStore'
 import * as serviceWorker from './serviceWorker';
 import MainLayout from './containers/MainLayout'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SideNav from "./containers/SideNav";
+import FilmsList from "./containers/FilmsList"
+import SeachNav from "./containers/SeachNav";
+
 
 
 ReactDOM.render(
@@ -16,9 +18,11 @@ ReactDOM.render(
           <BrowserRouter>
               <div>
                   <MainLayout>
+                      <SeachNav/>
                       <SideNav/>
-                      <Route path="/:filter" component={App} />
-                      <Route path="/" exact={true} component={App} />
+                      <Route path="/" exact={true} component={FilmsList} />
+                      <Route path="/:genre" exact={true} component={FilmsList} />
+                      <Route path="/:genre/:page" component={FilmsList} />
                   </MainLayout>
               </div>
           </BrowserRouter>

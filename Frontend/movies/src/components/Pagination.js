@@ -1,33 +1,62 @@
 import React from 'react';
 import {Pagination, PaginationItem, PaginationLink} from 'reactstrap';
-import Film from "./Film";
+import { Link } from "react-router-dom";
 
 export class PagesLink extends React.Component {
 
-    renderPaginationItem(page) {
-        return (
-            <PaginationItem>
-                <PaginationLink href={page}>
+    renderPageItem (page, active) {
+        if (active){
+            return (
+                <PaginationItem active>
+                    <PaginationLink>
+                        {page}
+                    </PaginationLink>
+                </PaginationItem>
+            )
+        } else {
+            return (
+            <PaginationItem >
+                <PaginationLink>
                     {page}
                 </PaginationLink>
             </PaginationItem>
-        )
+            )
+        }
+
     }
 
     render() {
-        const page = this.props.page;
+        const {page, url, lastPage} = this.props;
+        // console.log(page.toString(), url);
         return (
-              <Pagination size="lg" aria-label="Page navigation example">
+            <div>
+              <Pagination aria-label="Page navigation example">
                 <PaginationItem>
-                  <PaginationLink previous href={'/'} />
+                  <Link to = {`/${url}/`}><PaginationLink previous/></Link>
                 </PaginationItem>
-                  {parseInt((page) - 1) > 0 ? this.renderPaginationItem(parseInt(page) - 1) : false}
-                  {this.renderPaginationItem(page)}
-                  {this.renderPaginationItem(parseInt(page) + 1)}
+                  { page > 1 ?
+                      <Link to = { page - 1 !== 1 ? `/${url}/${(parseInt(page) - 1)}` : `/${url}/`} >
+                      {this.renderPageItem((parseInt(page) - 1), false)}
+                    </Link> : ""}
+                  <Link to = {`/${url}/${page}`} >
+                      {this.renderPageItem(page, true)}
+                  </Link>
+                  {(parseInt(page) + 1) < lastPage ?
+                      <Link to = {`/${url}/${(parseInt(page) + 1)}`} >
+                          {this.renderPageItem((parseInt(page) + 1), false)}
+                      </Link> : ""
+                  }
+                  {(parseInt(page) + 2) < lastPage ?
+                      <Link to={`/${url}/${(parseInt(page) + 2)}`}>
+                          {this.renderPageItem((parseInt(page) + 2), false)}
+                      </Link> : ""
+                  }
                 <PaginationItem>
-                  <PaginationLink next href={parseInt(page) + 1} />
+                    <Link to = {`/${url}/${lastPage}`} ><PaginationLink next /></Link>
                 </PaginationItem>
               </Pagination>
+            </div>
+
             );
     }
 }
