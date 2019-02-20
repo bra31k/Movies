@@ -10,34 +10,40 @@ export class FilmsList extends React.Component {
 
     componentDidMount() {
         const { getFilms, setActualGenre, setCurrentPage } = this.props;
+        const {actualGenre, searchText, time_frame} = this.props.filmList;
         setActualGenre(this.props.match.params.genre);
         if (this.props.match.params.page !== undefined) {
             setCurrentPage(this.props.match.params.page);
-            getFilms(parseInt(this.props.match.params.page), this.props.filmList.actualGenre);
+            getFilms(parseInt(this.props.match.params.page), actualGenre, time_frame, searchText)
         }
         else {
             setCurrentPage(1);
-            getFilms(1, this.props.filmList.actualGenre);
+            getFilms(1, actualGenre, time_frame, searchText);
         }
-
     }
 
 
     componentDidUpdate(prevProps) {
         const { getFilms, setActualGenre, setCurrentPage } = this.props;
-        if (prevProps.filmList.actualGenre !== this.props.filmList.actualGenre) {
-            setActualGenre(this.props.filmList.actualGenre);
-            getFilms(this.props.filmList.currentPage, this.props.filmList.actualGenre);
+        const {actualGenre, searchText, currentPage, time_frame} = this.props.filmList;
+        if (prevProps.filmList.actualGenre !== actualGenre) {
+            setActualGenre(actualGenre);
+            getFilms(currentPage, actualGenre, time_frame, searchText)
         }
-        if (this.props.filmList.actualGenre !== this.props.match.params.genre) {
+        if (actualGenre !== this.props.match.params.genre) {
             setActualGenre(this.props.match.params.genre);
-            getFilms(this.props.filmList.currentPage, this.props.match.params.genre);
+            getFilms(currentPage, this.props.match.params.genre, time_frame, searchText)
         }
-        if (this.props.filmList.currentPage !== this.props.match.params.page && this.props.match.params.page !== undefined){
+        if (currentPage !== this.props.match.params.page && this.props.match.params.page !== undefined){
             setCurrentPage(this.props.match.params.page);
-            getFilms(this.props.match.params.page, this.props.filmList.actualGenre)
+            getFilms(this.props.match.params.page, actualGenre, time_frame, searchText)
         }
-        console.log(this.props);
+        if (prevProps.filmList.time_frame !== time_frame) {
+            getFilms(currentPage, actualGenre, time_frame, searchText)
+        }
+        if (prevProps.filmList.searchText !== searchText) {
+            getFilms(currentPage, actualGenre, time_frame, searchText);
+        }
     }
 
 
@@ -77,7 +83,7 @@ const mapStateToProps = store => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        getFilms: (page, genres) => dispatch(getFilms(page, genres)),
+        getFilms: (page, genres, time_frame, searchText) => dispatch(getFilms(page, genres, time_frame, searchText)),
         setCurrentPage: (page) => dispatch(setCurrentPage(page)),
         setActualGenre: (genres) => dispatch(setActualGenre(genres)),
     }

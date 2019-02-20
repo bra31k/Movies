@@ -3,6 +3,11 @@ const initialState = {
     currentPage: 1,
     lastPage: "",
     films: [],
+    searchText: "",
+    time_frame: {
+        start_date: 1875,
+        end_date: 2019,
+    }
 };
 
 export function filmReducer(state = initialState, action) {
@@ -13,6 +18,10 @@ export function filmReducer(state = initialState, action) {
             return { ...state, films: action.payload, lastPage: action.lastPage};
         case 'GET_ACTUAL_GENRE':
             return { ...state, actualGenre: action.payload };
+        case 'SET_DATE':
+            return {...state, time_frame: {start_date: action.payload.min, end_date: action.payload.max} };
+        case 'SET_SEARCH_INPUT':
+            return {...state, searchText: action.payload};
 
     default:
       return state

@@ -1,8 +1,12 @@
 import React from 'react';
 import { Button } from 'reactstrap';
-import {getGenres, setActualGenre} from "../actions/SideNavActions";
+import {getGenres, setActualGenre, setReleaseDate} from "../actions/SideNavActions";
 import {connect} from "react-redux";
 import { Link } from "react-router-dom";
+import InputRange from 'react-input-range';
+import 'react-input-range/lib/css/index.css';
+import Container from "reactstrap/es/Container";
+import { Row } from "reactstrap";
 
 
 export class SideNav extends React.Component {
@@ -38,10 +42,20 @@ export class SideNav extends React.Component {
     }
 
     render() {
+        const { setReleaseDate } = this.props;
         return (
-            <div>
-                {this.renderButton()}
-            </div>
+            <Container>
+                <Row>
+                    {this.renderButton()}
+                </Row>
+                <Row>
+                        <InputRange
+                            maxValue={2020}
+                            minValue={1874}
+                            value={{ min: this.props.film.time_frame.start_date, max: this.props.film.time_frame.end_date }}
+                            onChange={value => setReleaseDate(value)} />
+                </Row>
+            </Container>
         )
     }
 }
@@ -57,6 +71,7 @@ const mapDispatchToProps = dispatch => {
     return {
         getGenres: () => dispatch(getGenres()),
         setActualGenre: (genres) => dispatch(setActualGenre(genres)),
+        setReleaseDate: (value) => dispatch(setReleaseDate(value)),
     }
 };
 

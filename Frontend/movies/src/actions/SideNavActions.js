@@ -1,6 +1,7 @@
 import axios from 'axios';
 export const GET_GENRES_SUCCESS = 'GET_GENRES_SUCCESS';
 export const GET_ACTUAL_GENRE = 'GET_ACTUAL_GENRE';
+export const SET_DATE = 'SET_DATE';
 
 const apiGenresUrl = 'http://127.0.0.1:8000/api/genres/';
 
@@ -27,3 +28,13 @@ export const setActualGenre = (genres) => {
             })
         }
 };
+
+export const setReleaseDate = (value) => {
+    return function (dispatch) {
+        dispatch({
+                type: SET_DATE,
+                payload: value,
+            })
+        }
+};
+

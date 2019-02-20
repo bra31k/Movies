@@ -19,6 +19,9 @@ class FilmViewSet(generics.ListCreateAPIView):
       if 'genre' in request.GET:
          queryset = self.queryset.filter(genres__genre_name=str(request.GET['genre']))
 
+      if 'filter' in request.GET:
+         queryset = queryset.filter(original_title__icontains=str(request.GET['filter']))
+
       if 'start_date' and 'end_date' in request.GET:
          try:
             queryset = queryset.filter(release_date__range=(str(request.GET['start_date']), str(request.GET['end_date'])))
