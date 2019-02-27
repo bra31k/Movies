@@ -11,7 +11,6 @@ import FilmsList from "./containers/FilmsList"
 import SearchNav from "./containers/SearchNav";
 
 
-
 ReactDOM.render(
     <Provider store={store}>
           <BrowserRouter>
