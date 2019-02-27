@@ -52,7 +52,7 @@ export class SideNav extends React.Component {
                         <InputRange
                             maxValue={2020}
                             minValue={1874}
-                            value={{ min: this.props.film.time_frame.start_date, max: this.props.film.time_frame.end_date }}
+                            value={{ min: this.props.filmList.time_frame.start_date, max: this.props.filmList.time_frame.end_date }}
                             onChange={value => setReleaseDate(value)} />
                 </Row>
             </Container>
@@ -63,7 +63,7 @@ export class SideNav extends React.Component {
 const mapStateToProps = store => {
     return {
         sidenav: store.sidenav,
-        film: store.film,
+        filmList: store.film,
     }
 };
 

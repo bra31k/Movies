@@ -7,7 +7,6 @@ export function sideNavReducer(state = initialState, action) {
         case 'GET_GENRES_SUCCESS':
             return { ...state, genres: action.payload};
 
-
     default:
       return state
   }

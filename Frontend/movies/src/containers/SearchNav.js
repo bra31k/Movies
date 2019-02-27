@@ -12,7 +12,6 @@ import { connect } from "react-redux";
 
 export class SearchNav extends React.Component {
 
-
     onInputChange = (event) => {
         const { changeSearchForm } = this.props;
         changeSearchForm(event.target.value)
@@ -31,7 +30,7 @@ export class SearchNav extends React.Component {
                             type="search" name="search"
                             id="exampleSearch"
                             placeholder="search movies"
-                            value = {this.props.film.searchText}
+                            value = {this.props.filmList.searchText}
                             onChange = {this.onInputChange}
                         />
                     </Col>
@@ -45,7 +44,7 @@ export class SearchNav extends React.Component {
 
 const mapStateToProps = store => {
     return {
-        film: store.film,
+        filmList: store.film,
     }
 };
 

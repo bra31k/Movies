@@ -5,7 +5,7 @@ import { Provider } from 'react-redux'
 import { BrowserRouter, Route } from 'react-router-dom';
 import {store} from './store/configureStore'
 import * as serviceWorker from './serviceWorker';
-import MainLayout from './containers/MainLayout'
+import MainLayout from './components/MainLayout'
 import SideNav from "./containers/SideNav";
 import FilmsList from "./containers/FilmsList"
 import SearchNav from "./containers/SearchNav";
@@ -15,7 +15,7 @@ import SearchNav from "./containers/SearchNav";
 ReactDOM.render(
     <Provider store={store}>
           <BrowserRouter>
-              <div>
+              <div className="container">
                   <MainLayout>
                       <SearchNav/>
                       <SideNav/>
