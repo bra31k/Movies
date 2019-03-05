@@ -5,8 +5,7 @@ import {connect} from "react-redux";
 import { Link } from "react-router-dom";
 import InputRange from 'react-input-range';
 import 'react-input-range/lib/css/index.css';
-import Container from "reactstrap/es/Container";
-import { Row } from "reactstrap";
+import '../style/SideNav.css'
 
 
 export class SideNav extends React.Component {
@@ -30,10 +29,11 @@ export class SideNav extends React.Component {
                     className = { genre.genre_name }
                     key = { genre.genre_name }
                     to={ `/${genre.genre_name}/` }>
-                    <Button
-                        outline color = "primary"
-                        onClick = {() => this.onBtnClick(genre.genre_name)}
-                        key = { genre.genre_name }>
+                    <Button className='button-genre'
+                            color = "secondary"
+                            size = "sm"
+                            onClick = {() => this.onBtnClick(genre.genre_name)}
+                            key = { genre.genre_name }>
                         { genre.genre_name }
                     </Button>
                 </Link>
@@ -44,18 +44,14 @@ export class SideNav extends React.Component {
     render() {
         const { setReleaseDate } = this.props;
         return (
-            <Container>
-                <Row>
+            <div className='container'>
                     {this.renderButton()}
-                </Row>
-                <Row>
                         <InputRange
                             maxValue={2020}
                             minValue={1874}
                             value={{ min: this.props.filmList.time_frame.start_date, max: this.props.filmList.time_frame.end_date }}
                             onChange={value => setReleaseDate(value)} />
-                </Row>
-            </Container>
+            </div>
         )
     }
 }

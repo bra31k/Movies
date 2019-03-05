@@ -1,6 +1,7 @@
 import React from 'react';
 import {Pagination, PaginationItem, PaginationLink} from 'reactstrap';
 import { Link } from "react-router-dom";
+import '../style/FilmList.css'
 
 export class PagesLink extends React.Component {
 
@@ -29,7 +30,7 @@ export class PagesLink extends React.Component {
         const {page, url, lastPage} = this.props;
         // console.log(page.toString(), url);
         return (
-            <div>
+            <div className='pagination-style'>
               <Pagination aria-label="Page navigation example">
                 <PaginationItem>
                   <Link to = {`/${url}/`}><PaginationLink previous/></Link>

@@ -1,0 +1,19 @@
+.film-container{
+    display: grid;
+    position: relative;
+    margin: auto;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+
+.pagination-style {
+    position: relative;
+    float: right;
+    padding: 10px;
+}
+
+
+.card-style {
+    margin: 5px;
+    height: 480px;
+}

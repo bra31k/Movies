@@ -1,5 +1,6 @@
 import React from 'react';
-import {Card, CardBody, CardImg, CardTitle, Col} from "reactstrap";
+import '../style/FilmList.css'
+import {Card, CardBody, CardImg, CardTitle} from "reactstrap";
 
 export class Film extends React.Component {
 
@@ -10,14 +11,12 @@ export class Film extends React.Component {
 
     render() {
         return (
-            <Col xs="auto" sm={{ size: '4'}}>
-                    <Card body className="text-center">
+                    <Card body className = "text-center card-style">
                         <CardImg width="100" src={this.getImg(this.props.poster_path)} />
                         <CardBody>
                             <CardTitle>{this.props.original_title}</CardTitle>
                         </CardBody>
                         </Card>
-                    </Col>
     )
   }
 }

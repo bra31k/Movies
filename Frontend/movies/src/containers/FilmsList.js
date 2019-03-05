@@ -1,9 +1,9 @@
 import React from 'react';
 import Film from '../components/Film.js'
 import PagesLink from '../components/Pagination'
-import { Container, Row, Col } from 'reactstrap';
 import { connect } from 'react-redux'
 import { getFilms, setCurrentPage, setActualGenre} from '../actions/FilmListActions'
+import '../style/FilmList.css'
 
 
 export class FilmsList extends React.Component {
@@ -23,6 +23,7 @@ export class FilmsList extends React.Component {
     }
 
 
+
     componentDidUpdate(prevProps) {
         const { getFilms, setActualGenre, setCurrentPage } = this.props;
         const {actualGenre, searchText, currentPage, time_frame} = this.props.filmList;
@@ -34,15 +35,18 @@ export class FilmsList extends React.Component {
             setActualGenre(this.props.match.params.genre);
             getFilms(currentPage, this.props.match.params.genre, time_frame, searchText)
         }
-        if (currentPage !== this.props.match.params.page && this.props.match.params.page !== undefined){
-            setCurrentPage(this.props.match.params.page);
-            getFilms(this.props.match.params.page, actualGenre, time_frame, searchText)
+        if (currentPage !== this.props.match.params.page){
+            if (this.props.match.params.page !== undefined) {
+                setCurrentPage(this.props.match.params.page);
+                getFilms(this.props.match.params.page, actualGenre, time_frame, searchText)
+            }
+            if (currentPage !== 1) {
+                setCurrentPage(1);
+                getFilms(1, actualGenre, time_frame, searchText)
+            }
         }
-        if (prevProps.filmList.time_frame !== time_frame) {
+        if (prevProps.filmList.time_frame !== time_frame || prevProps.filmList.searchText !== searchText) {
             getFilms(currentPage, actualGenre, time_frame, searchText)
-        }
-        if (prevProps.filmList.searchText !== searchText) {
-            getFilms(currentPage, actualGenre, time_frame, searchText);
         }
     }
 
@@ -58,19 +62,16 @@ export class FilmsList extends React.Component {
 
     render() {
         return (
-            <Container>
-                <Row>
-                    <Col sm="12" md={{ size: 6, offset: 9 }}>
-                        <PagesLink
-                            lastPage={this.props.filmList.lastPage}
-                            page={this.props.filmList.currentPage}
-                            url={this.props.match.params.genre}/>
-                        </Col>
-                </Row>
-                <Row>
-                    {this.renderFilms()}
-                </Row>
-            </Container>
+            <div>
+            <div className='film-container'>
+                {this.renderFilms()}
+            </div>
+                <PagesLink
+                    lastPage={this.props.filmList.lastPage}
+                    page={this.props.filmList.currentPage}
+                    url={this.props.match.params.genre}/>
+            </div>
+
     )
   }
 }
