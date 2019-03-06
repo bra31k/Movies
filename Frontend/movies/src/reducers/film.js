@@ -16,7 +16,7 @@ export function filmReducer(state = initialState, action) {
             return { ...state, currentPage: action.payload};
         case 'GET_FILMS_SUCCESS':
             return { ...state, films: action.payload, lastPage: action.lastPage};
-        case 'GET_ACTUAL_GENRE':
+        case 'SET_ACTUAL_GENRE':
             return { ...state, actualGenre: action.payload };
         case 'SET_DATE':
             return {...state, time_frame: {start_date: action.payload.min, end_date: action.payload.max} };

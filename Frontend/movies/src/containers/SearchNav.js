@@ -7,7 +7,7 @@ import {
     Input,
     Col,
 } from 'reactstrap';
-import { changeSearchForm } from "../actions/SearchNavActions";
+import { changeSearchForm } from "../actions/FilmActions";
 import { connect } from "react-redux";
 
 export class SearchNav extends React.Component {

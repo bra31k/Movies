@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from 'reactstrap';
-import {getGenres, setActualGenre, setReleaseDate} from "../actions/SideNavActions";
+import {getGenres} from "../actions/GenresActions";
+import {setActualGenre, setReleaseDate} from '../actions/FilmActions'
 import {connect} from "react-redux";
 import { Link } from "react-router-dom";
 import InputRange from 'react-input-range';

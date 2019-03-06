@@ -2,7 +2,7 @@ import React from 'react';
 import Film from '../components/Film.js'
 import PagesLink from '../components/Pagination'
 import { connect } from 'react-redux'
-import { getFilms, setCurrentPage, setActualGenre} from '../actions/FilmListActions'
+import { getFilms, setCurrentPage, setActualGenre} from '../actions/FilmActions'
 import '../style/FilmList.css'
 
 
@@ -31,13 +31,17 @@ export class FilmsList extends React.Component {
             setActualGenre(actualGenre);
             getFilms(currentPage, actualGenre, time_frame, searchText)
         }
+        if (currentPage !== prevProps.filmList.currentPage) {
+            setCurrentPage(currentPage);
+            getFilms(currentPage, actualGenre, time_frame, searchText);
+        }
         if (actualGenre !== this.props.match.params.genre) {
             setActualGenre(this.props.match.params.genre);
             getFilms(currentPage, this.props.match.params.genre, time_frame, searchText)
         }
-        if (currentPage !== this.props.match.params.page){
+        if (currentPage !== parseInt(this.props.match.params.page)){
             if (this.props.match.params.page !== undefined) {
-                setCurrentPage(this.props.match.params.page);
+                setCurrentPage(parseInt(this.props.match.params.page));
                 getFilms(this.props.match.params.page, actualGenre, time_frame, searchText)
             }
             if (currentPage !== 1) {
@@ -67,6 +71,7 @@ export class FilmsList extends React.Component {
                 {this.renderFilms()}
             </div>
                 <PagesLink
+                    setCurrentPage={this.props.setCurrentPage}
                     lastPage={this.props.filmList.lastPage}
                     page={this.props.filmList.currentPage}
                     url={this.props.match.params.genre}/>

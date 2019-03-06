@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 import { filmReducer } from './film'
-import { sideNavReducer } from './sidenav'
+import { sideNavReducer } from './genres'
 
 export const rootReducer = combineReducers({
   film: filmReducer,

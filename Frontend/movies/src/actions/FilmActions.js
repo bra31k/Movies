@@ -1,7 +1,10 @@
 import axios from 'axios';
-import {GET_ACTUAL_GENRE} from "./SideNavActions";
+
+export const SET_ACTUAL_GENRE = 'SET_ACTUAL_GENRE';
+export const SET_DATE = 'SET_DATE';
 export const GET_PAGE_SUCCESS = 'GET_PAGE_SUCCESS';
 export const GET_FILMS_SUCCESS = 'GET_FILMS_SUCCESS';
+export const SET_SEARCH_INPUT = 'SET_SEARCH_INPUT';
 
 const apiUrl = 'http://127.0.0.1:8000/api/films/';
 
@@ -67,7 +70,14 @@ export const getFilms = (page, genres, time_frame, filter) => {
     }
 };
 
-
+export const changeSearchForm = (text) => {
+    return function (dispatch) {
+        dispatch({
+                type: SET_SEARCH_INPUT,
+                payload: text,
+            })
+        }
+};
 
 export const setCurrentPage = (page) => {
     return function (dispatch) {
@@ -81,8 +91,17 @@ export const setCurrentPage = (page) => {
 export const setActualGenre = (genres) => {
     return function (dispatch) {
         dispatch({
-                type: GET_ACTUAL_GENRE,
+                type: SET_ACTUAL_GENRE,
                 payload: genres,
+            })
+        }
+};
+
+export const setReleaseDate = (value) => {
+    return function (dispatch) {
+        dispatch({
+                type: SET_DATE,
+                payload: value,
             })
         }
 };
