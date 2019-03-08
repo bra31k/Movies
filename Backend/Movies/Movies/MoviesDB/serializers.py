@@ -1,5 +1,6 @@
-from .models import Film, Genre
 from rest_framework import serializers
+
+from .models import Film, Genre
 
 
 class GenreSerializer(serializers.HyperlinkedModelSerializer):

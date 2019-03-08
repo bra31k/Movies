@@ -19,7 +19,7 @@ ReactDOM.render(
                       <SearchNav/>
                       <SideNav/>
                       <Switch>
-                          <Route path="/" exact={true} component={FilmsList} />
+                          <Route path='/' exact={true} component={FilmsList} />
                           <Route path="/:genre" exact={true} component={FilmsList} />
                           <Route path="/:genre/:page"  component={FilmsList} />
                       </Switch>

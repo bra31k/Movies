@@ -1,5 +1,6 @@
 import React from 'react';
 import '../style/index.css'
+import { withRouter } from 'react-router'
 
 export class MainLayout extends React.Component {
     render() {
@@ -14,4 +15,4 @@ export class MainLayout extends React.Component {
   }
 }
 
-export default MainLayout;
+export default withRouter(MainLayout);

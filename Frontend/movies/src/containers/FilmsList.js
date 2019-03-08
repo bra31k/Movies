@@ -4,6 +4,7 @@ import PagesLink from '../components/Pagination'
 import { connect } from 'react-redux'
 import { getFilms, setCurrentPage, setActualGenre} from '../actions/FilmActions'
 import '../style/FilmList.css'
+import { withRouter } from 'react-router-dom'
 
 
 export class FilmsList extends React.Component {
@@ -27,14 +28,6 @@ export class FilmsList extends React.Component {
     componentDidUpdate(prevProps) {
         const { getFilms, setActualGenre, setCurrentPage } = this.props;
         const {actualGenre, searchText, currentPage, time_frame} = this.props.filmList;
-        if (prevProps.filmList.actualGenre !== actualGenre) {
-            setActualGenre(actualGenre);
-            getFilms(currentPage, actualGenre, time_frame, searchText)
-        }
-        if (currentPage !== prevProps.filmList.currentPage) {
-            setCurrentPage(currentPage);
-            getFilms(currentPage, actualGenre, time_frame, searchText);
-        }
         if (actualGenre !== this.props.match.params.genre) {
             setActualGenre(this.props.match.params.genre);
             getFilms(currentPage, this.props.match.params.genre, time_frame, searchText)
@@ -48,6 +41,14 @@ export class FilmsList extends React.Component {
                 setCurrentPage(1);
                 getFilms(1, actualGenre, time_frame, searchText)
             }
+        }
+        if (prevProps.filmList.actualGenre !== actualGenre) {
+            setActualGenre(actualGenre);
+            getFilms(currentPage, actualGenre, time_frame, searchText)
+        }
+        if (currentPage !== prevProps.filmList.currentPage) {
+            setCurrentPage(currentPage);
+            getFilms(currentPage, actualGenre, time_frame, searchText);
         }
         if (prevProps.filmList.time_frame !== time_frame || prevProps.filmList.searchText !== searchText) {
             getFilms(currentPage, actualGenre, time_frame, searchText)
@@ -96,10 +97,10 @@ const mapDispatchToProps = dispatch => {
 };
 
 // в наш компонент App, с помощью connect(mapStateToProps)
-export default connect(
+export default withRouter(connect(
     mapStateToProps,
     mapDispatchToProps
-)(FilmsList)
+)(FilmsList))
 
 
 
