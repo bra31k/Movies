@@ -15,19 +15,15 @@ class FilmViewSet(generics.ListCreateAPIView):
 
         queryset = Film.objects.all()
 
-        genre = request.GET.get('genre', None)
-        search = request.GET.get('filter', None)
-        date = request.GET.get('start_date' and 'end_date', None)
-
         params = Q()
 
-        if genre:
+        if request.GET.get('genre', None):
             params = params & Q(genres__genre_name=request.GET['genre'])
 
-        if search:
+        if request.GET.get('filter', None):
             params = params & Q(original_title__icontains=request.GET['filter'])
 
-        if date:
+        if request.GET.get('start_date' and 'end_date', None):
             params = params & Q(release_date__range=(request.GET['start_date'], request.GET['end_date']))
 
         queryset = queryset.filter(params)
