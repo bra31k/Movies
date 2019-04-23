@@ -8,16 +8,16 @@ export const SET_SEARCH_INPUT = 'SET_SEARCH_INPUT';
 
 const apiUrl = 'http://127.0.0.1:8000/api/films/';
 
-export const getFilms = (page, genres, time_frame, filter) => {
+export const getFilms = (page, genres, timeFrame, filter) => {
     return function (dispatch) {
-        if (genres !== "" && genres !== 'undefined' && time_frame !== undefined && filter.length > 0) {
+        if (genres !== "" && genres !== 'undefined' && timeFrame !== undefined && filter.length > 0) {
             axios.get(apiUrl, {
                 params:
                     {
                         genre: genres,
                         page: page,
-                        end_date: time_frame.end_date.toString()+'-01-01',
-                        start_date: time_frame.start_date.toString()+'-01-01',
+                        end_date: timeFrame.end_date.toString()+'-01-01',
+                        start_date: timeFrame.start_date.toString()+'-01-01',
                         filter: filter
                     }}).then(res => {
             let films = res.data['results'];
@@ -32,14 +32,14 @@ export const getFilms = (page, genres, time_frame, filter) => {
                 throw(error.response);
             });
 
-    } if (genres !== "" && genres !== 'undefined' && time_frame !== undefined && filter.length === 0) {
+    } if (genres !== "" && genres !== 'undefined' && timeFrame !== undefined && filter.length === 0) {
             axios.get(apiUrl, {
                 params:
                     {
                         genre: genres,
                         page: page,
-                        end_date: time_frame.end_date.toString() + '-01-01',
-                        start_date: time_frame.start_date.toString() + '-01-01',
+                        end_date: timeFrame.end_date.toString() + '-01-01',
+                        start_date: timeFrame.start_date.toString() + '-01-01',
                     }
             }).then(res => {
                 let films = res.data['results'];

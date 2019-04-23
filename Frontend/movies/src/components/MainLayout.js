@@ -1,6 +1,7 @@
 import React from 'react';
-import '../style/index.css'
 import { withRouter } from 'react-router'
+
+import '../style/index.css'
 
 export class MainLayout extends React.Component {
     render() {

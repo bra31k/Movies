@@ -1,10 +1,11 @@
 import React from 'react';
 import { Button } from 'reactstrap';
-import {getGenres} from "../actions/GenresActions";
-import {setActualGenre, setReleaseDate} from '../actions/FilmActions'
-import {connect} from "react-redux";
+import { getGenres } from "../actions/GenresActions";
+import { setActualGenre, setReleaseDate } from '../actions/FilmActions'
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import InputRange from 'react-input-range';
+
 import 'react-input-range/lib/css/index.css';
 import '../style/SideNav.css'
 
@@ -50,7 +51,7 @@ export class SideNav extends React.Component {
                         <InputRange
                             maxValue={2020}
                             minValue={1874}
-                            value={{ min: this.props.filmList.time_frame.start_date, max: this.props.filmList.time_frame.end_date }}
+                            value={{ min: this.props.filmList.timeFrame.start_date, max: this.props.filmList.timeFrame.end_date }}
                             onChange={value => setReleaseDate(value)} />
             </div>
         )

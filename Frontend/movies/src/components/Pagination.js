@@ -1,6 +1,7 @@
 import React from 'react';
-import {Pagination, PaginationItem, PaginationLink} from 'reactstrap';
+import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 import { Link } from "react-router-dom";
+
 import '../style/FilmList.css'
 
 export class PagesLink extends React.Component {

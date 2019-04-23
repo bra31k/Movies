@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-    Navbar,
-    NavbarBrand,
-    Nav,
-    FormGroup,
-    Input,
-    Col,
-} from 'reactstrap';
+import { Navbar, NavbarBrand, Nav, FormGroup, Input, Col,} from 'reactstrap';
 import { changeSearchForm } from "../actions/FilmActions";
 import { connect } from "react-redux";
 
@@ -54,7 +47,6 @@ const mapDispatchToProps = dispatch => {
     }
 };
 
-// в наш компонент App, с помощью connect(mapStateToProps)
 export default connect(
     mapStateToProps,
     mapDispatchToProps

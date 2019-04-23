@@ -1,16 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { Provider } from 'react-redux'
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import {store} from './store/configureStore'
-import * as serviceWorker from './serviceWorker';
+import { store } from './store/configureStore'
 import MainLayout from './components/MainLayout'
 import SideNav from "./containers/SideNav";
 import FilmsList from "./containers/FilmsList"
 import SearchNav from "./containers/SearchNav";
-import './style/index.css'
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './style/index.css'
 
 ReactDOM.render(
     <Provider store={store}>
@@ -28,5 +27,4 @@ ReactDOM.render(
     </Provider>,
     document.getElementById('root'));
 
-serviceWorker.unregister();
 

@@ -1,6 +1,7 @@
 import React from 'react';
-import '../style/FilmList.css'
 import {Card, CardBody, CardImg, CardTitle} from "reactstrap";
+
+import '../style/FilmList.css'
 
 export class Film extends React.Component {
 
