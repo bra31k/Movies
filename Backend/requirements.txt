@@ -4,7 +4,7 @@ Django==2.2.10
 django-cors-headers==2.4.0
 django-rest-framework==0.1.0
 django-webpack-loader==0.6.0
-djangorestframework==3.9.1
+djangorestframework==3.11.2
 httpie==1.0.2
 idna==2.8
 Pygments==2.3.1
